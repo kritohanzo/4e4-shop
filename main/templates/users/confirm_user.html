@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Подтверждение</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="login_page">
+	<div class="main">  	
+		
+			<div class="confirm">
+				<form method="post" action="{% url 'users:confirm' username=username %}">
+					{% csrf_token %}
+					<label>Подтверждение аккаунта {{ username }}</label>
+					<input type="confirm_code" name="confirm_code", placeholder="confirm code">
+					<button type="submit">Войти	</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>

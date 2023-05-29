@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 
 
 class Worker(models.Model):
@@ -12,10 +12,11 @@ class Worker(models.Model):
         verbose_name_plural = 'Работники'
         ordering = ["id"]
 
-class User(models.Model):
+class User(AbstractUser):
+    # username = models.CharField(max_length=64, null=True, unique=False, blank=True)
     name_surname = models.CharField('Покупатель', max_length=64)
     email = models.CharField('Почта', max_length=32)
-    password = models.CharField('Пароль', max_length=16, default='123456')
+    password = models.CharField('Пароль', max_length=16)
     confirm_code = models.IntegerField('Код подтверждения')
     confirmed = models.BooleanField('Подтверждено', default=False)
 
