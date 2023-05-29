@@ -12,4 +12,14 @@ class Worker(models.Model):
         verbose_name_plural = 'Работники'
         ordering = ["id"]
 
-User = get_user_model()
+class User(models.Model):
+    name_surname = models.CharField('Покупатель', max_length=64)
+    email = models.CharField('Почта', max_length=32)
+    password = models.CharField('Пароль', max_length=16, default='123456')
+    confirm_code = models.IntegerField('Код подтверждения')
+    confirmed = models.BooleanField('Подтверждено', default=False)
+
+    class Meta:
+        verbose_name = 'Покупатель'
+        verbose_name_plural = 'Покупатели'
+        ordering = ["id"]
