@@ -3,11 +3,16 @@ from django.views import View
 from core.database_functions import register_user, check_confirm_code, accept_user
 from core.confirm_code_generator import generate_code
 from .forms import UserRegistrationForm, UserLoginForm
+from django.contrib.auth.views import LoginView
 
 # Create your views here.
+
 class SignUp(View):
     def get(self, request):
-        return redirect('users:login')
+        template = 'users/signup.html'
+        user_form = UserRegistrationForm()
+        context = {'form': user_form}
+        return render(request, template, context)
     
     def post(self, request):
         user_form = UserRegistrationForm(request.POST)

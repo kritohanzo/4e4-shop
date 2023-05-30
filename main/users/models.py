@@ -14,10 +14,8 @@ class Worker(models.Model):
 
 class User(AbstractUser):
     # username = models.CharField(max_length=64, null=True, unique=False, blank=True)
-    name_surname = models.CharField('Покупатель', max_length=64)
     email = models.CharField('Почта', max_length=32)
-    password = models.CharField('Пароль', max_length=16)
-    confirm_code = models.IntegerField('Код подтверждения')
+    confirm_code = models.IntegerField('Код подтверждения', null=True)
     confirmed = models.BooleanField('Подтверждено', default=False)
 
     class Meta:
