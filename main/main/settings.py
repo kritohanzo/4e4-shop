@@ -25,7 +25,7 @@ SECRET_KEY = '(2ayxvu^=62@a$(vi3x+zyy4f9$96*u#s8k78frt^dl@1br7ol'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -131,3 +131,5 @@ STATICFILES_DIR = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [STATICFILES_DIR]
 
 AUTH_USER_MODEL = 'users.User'
+
+AUTHENTICATION_BACKENDS = ('core.backends.EmailBackend',)

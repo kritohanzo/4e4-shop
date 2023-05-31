@@ -1,27 +1,35 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import CreateView
 from core.database_functions import register_user, check_confirm_code, accept_user
 from core.confirm_code_generator import generate_code
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
-class SignUp(View):
-    def get(self, request):
-        template = 'users/signup.html'
-        user_form = UserRegistrationForm()
-        context = {'form': user_form}
-        return render(request, template, context)
+
+class SignUp(CreateView):
+    template_name = 'users/signup.html'
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('users:confirm')
+
+
+    # def get(self, request):
+    #     template = 'users/signup.html'
+    #     user_form = UserRegistrationForm()
+    #     context = {'form': user_form}
+    #     return render(request, template, context)
     
-    def post(self, request):
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.confirm_code = generate_code()
-            new_user.save()
-            return redirect('users:confirm', username=new_user.username)
-        return redirect('users:login')
+    # def post(self, request):
+    #     user_form = UserRegistrationForm(request.POST)
+    #     if user_form.is_valid():
+    #         new_user = user_form.save(commit=False)
+    #         new_user.confirm_code = generate_code()
+    #         new_user.save()
+    #         return redirect('users:confirm', username=new_user.username)
+    #     return redirect('users:login')
     
     # def post(self, request):
     #     username = request.POST.get('username')

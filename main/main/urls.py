@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('users.urls', namespace='users')),
     path('work/', include('workzone.urls', namespace='workzone')),
-    path('', include('shop.urls', namespace='shop')),
+    path('shop/', include('shop.urls', namespace='shop')),
 ]

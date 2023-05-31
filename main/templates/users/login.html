@@ -13,9 +13,7 @@
 			<form method="post" action="{% url 'users:login' %}">
 				<label for="chk" aria-hidden="true">Логин</label>
 				{% for field in form %}
-				 {% if field.label != 'Username' %}
 					{{ field }}
-				{% endif %}
 				{% endfor %}
 				{% csrf_token %}
 				<button type="submit">Войти	</button>

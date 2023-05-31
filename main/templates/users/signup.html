@@ -10,6 +10,9 @@
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
+				{% if form.errors %}
+				{% for error in form.non_field_errors %}<div class="alert alert-danger">{{ error|escape }}</div>{% endfor %}
+				{% endif %}
 				<form method="post" action="{% url 'users:signup' %}" >
 					<label for="chk" aria-hidden="true">Регистрация</label>
 					{% for field in form %}
