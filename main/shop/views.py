@@ -11,7 +11,8 @@ class ShopView(View):
     @confirm_required
     def get(self, request):
         template = 'shop/shop.html'
-        objects = get_all_objects('ready_products')
+        objects = get_all_objects('shop_readyproduct')
+        print(objects)
         context = {"products": objects}
         return render(request, template, context)
     
