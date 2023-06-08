@@ -1,24 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-
-class Worker(models.Model):
-    name_surname = models.CharField('Работник', max_length=64)
-    number = models.CharField('Номер телефона', max_length=16)
-    password = models.CharField('Пароль', max_length=16, default='123456')
-
-    class Meta:
-        verbose_name = 'Работник'
-        verbose_name_plural = 'Работники'
-        ordering = ["id"]
+from core.confirm_code_generator import generate_code
 
 class User(AbstractUser):
     # username = models.CharField(max_length=64, null=True, unique=False, blank=True)
     email = models.CharField('Почта', max_length=32)
-    confirm_code = models.IntegerField('Код подтверждения', null=True)
+    confirm_code = models.IntegerField('Код подтверждения', default=generate_code())
     confirmed = models.BooleanField('Подтверждено', default=False)
+    worker = models.BooleanField('Работник', default=False)
+
+    @property
+    def is_confirmed(self):
+        return self.confirmed
 
     class Meta:
-        verbose_name = 'Покупатель'
-        verbose_name_plural = 'Покупатели'
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
         ordering = ["id"]

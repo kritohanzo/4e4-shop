@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'project',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',
@@ -132,4 +132,10 @@ STATICFILES_DIRS = [STATICFILES_DIR]
 
 AUTH_USER_MODEL = 'users.User'
 
+LOGIN_URL = "users:login"
+LOGIN_REDIRECT_URL = "shop:index"
+
 AUTHENTICATION_BACKENDS = ('core.backends.EmailBackend',)
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

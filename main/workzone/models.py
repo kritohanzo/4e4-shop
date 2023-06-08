@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Worker
+from users.models import User
 
 
 class Work(models.Model):
@@ -41,7 +41,7 @@ class WorkInProcess(models.Model):
     name = models.CharField("Наименование продукта", max_length=64)
     work_id = models.ForeignKey(Work, on_delete=models.CASCADE, related_name="works_in_process")
     ready_product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="works_in_process")
-    worker_id = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="works_in_process")
+    worker_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="works_in_process")
 
     class Meta:
         verbose_name = "Работа в процессе"
@@ -79,9 +79,9 @@ class WorkWorker(models.Model):
         verbose_name="Работа",
     )
     worker = models.ForeignKey(
-        Worker,
+        User,
         on_delete=models.CASCADE,
-        related_name="worker",
+        related_name="worker_w",
         verbose_name="Работник",
     )
 

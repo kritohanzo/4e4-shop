@@ -1,11 +1,7 @@
+{% extends 'users/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Подтверждение</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-</head>
+{% block title %} Подтверждение {% endblock %}
+{% block content %}
 <body class="login_page">
 	<div class="main">  	
 		
@@ -19,4 +15,4 @@
 			</div>
 	</div>
 </body>
-</html>
+{% endblock %}

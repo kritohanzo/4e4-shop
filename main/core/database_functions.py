@@ -6,9 +6,9 @@ def connect_control(func) -> None:
     def wrapper(*args, **kwargs) -> None:
         connection = psycopg2.connect(
             host="localhost",
-            database="postgres",
+            database="project",
             user="postgres",
-            password="123123"
+            password="123456"
         )
         cursor = connection.cursor()
         result = func(cursor = cursor, *args, **kwargs)
@@ -46,3 +46,15 @@ def check_confirm_code(username, confirm_code, cursor):
 @connect_control
 def accept_user(username, cursor):
     cursor.execute(f"""UPDATE users_user SET confirmed = true WHERE username = '{username}';""")
+
+
+@connect_control
+def get_all_objects(table, cursor):
+    cursor.execute(f"""SELECT * FROM {table} ORDER BY id;""")
+    columns = [column[0] for column in cursor.description]
+    results = []
+    for row in cursor.fetchall():
+        results.append(dict(zip(columns, row)))
+    return results                
+
+get_all_objects('ready_products')

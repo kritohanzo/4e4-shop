@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from django.views import View
+from core.decorators import confirm_required
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.contrib.auth.models import AnonymousUser
+from core.database_functions import get_all_objects
 
 # Create your views here.
 class ShopView(View):
+    @confirm_required
     def get(self, request):
         template = 'shop/shop.html'
-        return render(request, template)
+        objects = get_all_objects('ready_products')
+        context = {"products": objects}
+        return render(request, template, context)
     
 class KediView(View):
     def get(self, request):

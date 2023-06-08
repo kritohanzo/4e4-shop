@@ -8,15 +8,16 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserRegistrationForm(UserCreationForm):
 
-    # username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'placeholder': 'Имя'}))
-    # email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Почта'}))
+    username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'placeholder': 'Имя'}))
+    email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Почта'}))
     password1 = forms.CharField(label='Password1', widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
     password2 = forms.CharField(label='Password2', widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
 
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("username", "email")
+        fields = ('username', 'email')
+
 
 # class UserRegistrationForm(forms.ModelForm):
 #     username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'placeholder': 'Имя  '}))
@@ -30,7 +31,6 @@ class UserRegistrationForm(UserCreationForm):
 class UserLoginForm(AuthenticationForm):
 
     username = UsernameField(label='Email', widget=forms.TextInput(attrs={'autofocus': True, 'placeholder': 'Почта'}))
-    # email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Почта'}))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
 
     # class Meta:
