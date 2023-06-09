@@ -3,32 +3,19 @@
 {% block title %} ШОП ) {% endblock %}
 {% block content %}
 
-<!-- Modal -->
-<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="w-100 pt-1 mb-5 text-right">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="get" class="modal-content modal-body border-0 p-0">
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                <button type="submit" class="input-group-text bg-success text-light">
-                    <i class="fa fa-fw fa-search text-white"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-
 <!-- MODAL -->
-<dialog style="padding: 0">
-    <div id="modal-box" style="padding: 1rem">
-        <div>Modal content</div>
-        <button id="close-modal-btn">Close</button>
-    </div>
-</dialog>
-<button id="show-modal-btn">Show modal</button>
+
+<!-- Элементы для вызова модальных окон, могут быть любые -->
+
+
+
+<!-- Несколько модальных окон -->
+
+
+
+<!-- Подложка под модальным окном -->
+<div class="overlay js-overlay-modal"></div>
+
 <!-- ENDMODAL -->
 
 
@@ -37,7 +24,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="row">
-            {% for product in products %}
+                {% for product in products %}
                 <div class="col-md-4">
                     <div class="card mb-4 product-wap rounded-0">
                         <div class="card rounded-0">
@@ -49,15 +36,15 @@
                             <div
                                 class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'shop:kedi' %}"><i
-                                                class="far fa-eye"></i></a></li>
+                                    <li><a href="#" class="js-open-modal js-btn-open-modal btn btn-success text-white mt-2"
+                                            data-modal="{{ product.id }}"><i class="far fa-eye"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-body">
                             <a href="shop-single.html" class="h3 text-decoration-none">{{ product.model }}</a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>{{ product.name }}</li>
+                                <li>{{ product.type }}</li>
                                 <li class="pt-2">
                                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                     <span
@@ -74,113 +61,15 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-
-                <!-- <div class="col-md-4">
-                    <div class="card mb-4 product-wap rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{% static 'img/кроссовки.jpg' %}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'shop:krossi' %}"><i
-                                                class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">Кроссовки V1</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>4E4 Demon</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                </li>
-                            </ul>
-                            <p class="text-center mb-0">4500 руб</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 product-wap rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{% static 'img/сапоги.jpg' %}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-sapogi.html"><i
-                                                class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">Сапоги V1</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>4E4 Blade</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                </li>
-                            </ul>
-                            <p class="text-center mb-0">3500 руб</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 product-wap rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{% static 'img/туфли.jpg' %}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-tufli.html"><i
-                                                class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">Туфли V1</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>4E4 Dance</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                    <span
-                                        class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                </li>
-                            </ul>
-                            <p class="text-center mb-0">3500 руб</p>
-                        </div>
-                    </div>
-                </div> -->
-
-
-
+                
+                {% include 'shop/modal.html' %}
+                
+                {% endfor %}
 
             </div>
         </div>
 
     </div>
 </div>
+
 {% endblock %}

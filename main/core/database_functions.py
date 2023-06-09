@@ -55,6 +55,13 @@ def get_all_objects(table, cursor):
     results = []
     for row in cursor.fetchall():
         results.append(dict(zip(columns, row)))
-    return results                
+    return results  
 
-get_all_objects('ready_products')
+@connect_control
+def get_all_shoes(cursor):
+    cursor.execute(f"""SELECT * FROM public.get_all_shoes();""")
+    columns = [column[0] for column in cursor.description]
+    results = []
+    for row in cursor.fetchall():
+        results.append(dict(zip(columns, row)))
+    return results                
