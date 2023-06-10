@@ -24,3 +24,17 @@ def noconfirm_nologin_required(func):
             return func(self, username)
         return redirect('shop:index')
     return wrapper
+
+def worker_required(func):
+    def wrapper(self):
+        if self.user.is_worker:
+            return func(self)
+        return redirect('shop:index')
+    return wrapper
+
+def director_worker_required(func):
+    def wrapper(self):
+        if self.user.is_staff and self.user.is_worker:
+            return func(self)
+        return redirect('workzone:index')
+    return wrapper

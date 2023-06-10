@@ -25,6 +25,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#endFooter">Контакты</a>
                     </li>
+                    {% if user.is_worker %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg btn-success text-white" href="{% url 'workzone:index' %}">Рабочая зона</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">

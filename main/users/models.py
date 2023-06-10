@@ -8,10 +8,15 @@ class User(AbstractUser):
     confirm_code = models.IntegerField('Код подтверждения', default=generate_code())
     confirmed = models.BooleanField('Подтверждено', default=False)
     worker = models.BooleanField('Работник', default=False)
+    active_orders = models.IntegerField('Активные заказы', default=0)
 
     @property
     def is_confirmed(self):
         return self.confirmed
+    
+    @property
+    def is_worker(self):
+        return self.worker
 
     class Meta:
         verbose_name = 'Пользователь'

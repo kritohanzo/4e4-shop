@@ -22,7 +22,7 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('users.urls', namespace='users')),
-    path('work/', include('workzone.urls', namespace='workzone')),
+    path('workzone/', include('workzone.urls', namespace='workzone')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('',  lambda request: redirect('shop:index', permanent=False)),
 ]

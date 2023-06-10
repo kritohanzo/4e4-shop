@@ -1,0 +1,15 @@
+<nav>
+    <div class="menu-container">
+        <div class="info-container">
+            <a>ФИО работника: {{ user.username }}</a>
+            <a>Должность: {% if user.is_staff %} Директор {% else %} Работник {% endif %}</a>
+            <a>Активных заказов: {{ user.active_orders }}/5</a>
+        </div>
+        <ul>
+            <li><a href="{% url 'workzone:index' %}">Доступные заказы</a></li>
+            <!-- Вместо решётки ссылка на страницу с заказами-->
+            <li><a href="{% url 'workzone:profile' %}">Мои заказы</a></li> <!--Список выполняемых работником заказов-->
+            <li><a href="{% url 'users:logout' %}">Выйти</a></li> <!-- Выйти из учётки-->
+        </ul>
+    </div>
+</nav>

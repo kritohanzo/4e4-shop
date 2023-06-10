@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import ShopView, KediView, KrossiView, TufliView, SapogiView
 from django.contrib.auth.decorators import login_required
+from core.decorators import worker_required
 
 app_name = 'shop'
 
