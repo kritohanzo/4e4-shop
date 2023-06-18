@@ -60,7 +60,8 @@
 
 
 
-                            <form action="" method="GET">
+                            <form action="{% url 'shop:buy' %}" method="GET">
+                                {% csrf_token %}
                                 <input type="hidden" name="product-id" value="{{ product.id }}">
                                 <div class="row justify-content-between">
                                     <div class="col-auto">
@@ -94,10 +95,6 @@
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg" name="submit"
                                             value="buy">Купить</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                            value="addtocard">Добавить в корзину</button>
                                     </div>
                                 </div>
                             </form>

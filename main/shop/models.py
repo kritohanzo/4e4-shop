@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 class Size(models.Model):
     size = models.IntegerField('Размер')
@@ -36,4 +37,13 @@ class ReadyProduct(models.Model):
     class Meta:
         verbose_name = "Готовый продукт"
         verbose_name_plural = "Готовые продукты"
+        ordering = ["id"]
+
+class Feedback(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedback_client")
+    feedback = models.CharField('Обратная связь', max_length=1200)
+
+    class Meta:
+        verbose_name = "Обратная связь"
+        verbose_name_plural = "Обратные связи"
         ordering = ["id"]

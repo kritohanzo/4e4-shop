@@ -1,35 +1,31 @@
-<!--Админка-->
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Админка склада</title>
-</head>
-<body class="body_for_main">
-    <nav>
-        <div class="menu-container">
-          <div class="info-container">
-            <a>ФИО: Иванов Иван</a>
-            <a>Должность:Директор</a>
-          </div>
-          <ul>
-            <li><a href="#">Заказы</a></li> <!-- Вместо решётки ссылка на страницу с заказами--> 
-            <li><a href="#">Работники</a></li> <!--Список выполняемых работником заказов--> 
-            <li><a href="#">Склад</a></li>
-            <li><a href="#">Выйти</a></li> <!-- Выйти из учётки--> 
-          </ul>
+{% extends 'workzone/base.html' %}
+{% block title %}Склад{% endblock %}<!--Доступные мне заказы-->
+{% block content %}
+<div class="tables">
+  {% for product in products %}
+  
+  <div class="col-8 mx-auto pb-4">
+    <div class="order-container">
+      <div class="col-md-10 col-lg-10 col-xl-10 px-3 order-info d-flex flex-row justify-content-center align-items-center text-center">
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Продукт:</h6>
+          <p><strong>{{ product.product }}</strong></p>
         </div>
-      </nav>
-      <div class="order-container">
-        <div class="order-number"></div>
-        <div class="order-type"></div>
-        <div class="order-size">Продукции на складе: </div>
-        <div class="order-size">Остаток </div>
-        <div class="order-status">Статус заказа: Выполнено</div>
-        <div class="order-dealer"></div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Количество на складе:</h6>
+          <p><strong>{{ product.quantity }}</strong></p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Поставщик:</h6>
+          <p><strong>{{ product.provider }}</strong></p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Номер поставщика:</h6>
+          <p><strong>{{ product.provider_number }}</strong></p>
+        </div>
       </div>
-    
-</body>
-</html>
+    </div>
+  </div>
+
+  {% endfor %}
+{% endblock %}

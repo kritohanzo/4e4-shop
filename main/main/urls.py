@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import redirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('shop/', include('shop.urls', namespace='shop')),
     path('',  lambda request: redirect('shop:index', permanent=False)),
 ]
+
+handler404 = "core.views.page_not_found"
 
 if settings.DEBUG:
     urlpatterns += static(

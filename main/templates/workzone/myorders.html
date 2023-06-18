@@ -1,11 +1,41 @@
 {% extends 'workzone/base.html' %}
 {% block title %}Личный кабинет{% endblock %}<!--Доступные мне заказы-->
 {% block content %}
-<div class="order-container">
-  <div class="order-number">Номер заказа: 100</div>
-  <div class="order-type">Тип заказа:Кроссовки </div>
-  <div class="order-size">Размер: 44</div>
-  <div class="order-size">Пол: Женский</div>
-  <div class="order-status">Статус заказа: Выполнено</div>
-</div>
+<div class="tables">
+  {% for order in orders %}
+  <div class="col-8 mx-auto pb-4">
+    <div class="order-container">
+      <div class="col-md-10 col-lg-10 col-xl-10 px-3 order-info d-flex flex-row justify-content-center align-items-center text-center">
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <img class="img-fluid" src="/media/{{ order.picture }}">
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Номер заказа:</h6>
+          <p><strong>{{ order.id }}</strong></p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Тип:</h6>
+          <p><strong>{{ order.type }}</strong></p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+          <h6>Размер:</h6>
+          <p><strong>{{ order.size }}</strong></p>
+        </div>
+      </div>
+      {% if order.completed %}
+      <div class="col-md-2 col-lg-2 col-xl-2 text-center">
+        <h6>Статус заказа:</h6>
+        <p><strong>Выполнен</strong></p>
+      </div>
+      {% else %}
+      <div class="col-md-2 col-lg-2 col-xl-2 text-center">
+        <h6>Статус заказа:</h6>
+        <p><strong>{% if not order.completed %}В работе{% endif %}</strong></p>
+        <a class="take-order btn btn-success" href="{% url 'workzone:end' order_id=order.id %}">Закончить</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %}
 {% endblock %}

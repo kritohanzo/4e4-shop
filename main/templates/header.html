@@ -1,4 +1,5 @@
 {% load static %}
+<header>
 <nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container d-flex justify-content-between align-items-center" id="myShop">
 
@@ -17,7 +18,7 @@
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'shop:index' %}">Обратная связь</a>
+                        <a class="nav-link" href="{% url 'shop:feedback' %}">Обратная связь</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-open-modal" data-modal="100">О нас</a>
@@ -27,12 +28,13 @@
                     </li>
                     {% if user.is_worker %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-lg btn-success text-white" href="{% url 'workzone:index' %}">Рабочая зона</a>
+                        <a class="nav-link btn btn-lg btn-success text-white" href="{% url 'workzone:index' %}">Рабочая
+                            зона</a>
                     </li>
                     {% endif %}
                 </ul>
             </div>
-            <div class="navbar align-self-center d-flex">
+            <div class="navbar align-self-center">
                 <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                     <div class="input-group">
                         <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
@@ -41,18 +43,21 @@
                         </div>
                     </div>
                 </div>
-
-                <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                    <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">1</span>
-                </a>
-                <a class="nav-icon position-relative text-decoration-none"
-                    href="{% url 'users:profile' username=user.username %}">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+1</span>
-                </a>
+                {% if user.is_authenticated %}
+                <div class="d-flex flex-row px-3">
+                        <a class="btn btn-success text-white" href="{% url 'users:profile' %}">Личный кабинет</a>
+                </div>
+                <div class="d-flex flex-row">
+                    <a class="btn btn-success text-white" href="{% url 'users:logout' %}">Выйти</a>
+            </div>
+                {% else %}
+                <div class="d-flex flex-row px-3">
+                    <a class="btn btn-success text-white" href="{% url 'users:signup' %}">Регистрация</a>
+                </div>
+                <div class="d-flex flex-row">
+                    <a class="btn btn-success text-white" href="{% url 'users:login' %}">Вход</a>
+                </div>
+                {% endif %}
             </div>
         </div>
 
@@ -70,26 +75,27 @@
     <section class="py-5">
         <div class="container">
             <div class="row align-items-center justify-content-center">
-                    <div class="col-md-8 text-black">
-                        <h1>О нас</h1>
-                        <p>
-                            <br>4E4 - это модный и востребованный бренд, который производит стильную и удобную
-                            обувь для молодых и энергичных людей. Основанная экспертами в области моды и
-                            дизайна, компания 4E4 фокусируется на эксклюзивных решениях, которые сочетают в
-                            себе стиль и инновационную технологию. <br><br>Все модели 4E4 созданы с
-                            использованием только высококачественных материалов и тщательно проработаны до
-                            мельчайших деталей, чтобы обеспечить удобство и комфорт в процессе ношения.
-                            <br><br>4E4 - это бренд, который полностью ориентирован на потребности своих
-                            клиентов, предлагая самые свежие и актуальные коллекции для всех, кто ценит моду
-                            во всех ее проявлениях.
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'img/pepedealer.png' %}" alt="About Hero">
-                    </div>
+                <div class="col-md-8 text-black">
+                    <h1>О нас</h1>
+                    <p>
+                        <br>4E4 - это модный и востребованный бренд, который производит стильную и удобную
+                        обувь для молодых и энергичных людей. Основанная экспертами в области моды и
+                        дизайна, компания 4E4 фокусируется на эксклюзивных решениях, которые сочетают в
+                        себе стиль и инновационную технологию. <br><br>Все модели 4E4 созданы с
+                        использованием только высококачественных материалов и тщательно проработаны до
+                        мельчайших деталей, чтобы обеспечить удобство и комфорт в процессе ношения.
+                        <br><br>4E4 - это бренд, который полностью ориентирован на потребности своих
+                        клиентов, предлагая самые свежие и актуальные коллекции для всех, кто ценит моду
+                        во всех ее проявлениях.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static 'img/pepedealer.png' %}" alt="About Hero">
+                </div>
             </div>
         </div>
     </section>
 
 </div>
 <div class="overlay js-overlay-modal"></div>
+</header>

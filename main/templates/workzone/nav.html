@@ -1,15 +1,32 @@
 <nav>
-    <div class="menu-container">
-        <div class="info-container">
-            <a>ФИО работника: {{ user.username }}</a>
-            <a>Должность: {% if user.is_staff %} Директор {% else %} Работник {% endif %}</a>
-            <a>Активных заказов: {{ user.active_orders }}/5</a>
+    <div class="col-12 d-flex flex-row align-items-center justify-content-around">
+        <div class="pt-3 text-center col-6 d-flex flex-row">
+            <div class="col-4">
+                <h4>ФИО работника:</h4>
+                <p>{{ user.username }}</p>
+            </div>
+            <div class="col-4">
+                <h4>Должность:</h4>
+                <p>{% if user.is_staff %} Директор {% else %} Работник {% endif %}</p>
+            </div>
+            <div class="col-4">
+                <h4>Активных заказов:</h4>
+                <p>{{ user.active_orders }}/5</p>
+            </div>
         </div>
-        <ul>
-            <li><a href="{% url 'workzone:index' %}">Доступные заказы</a></li>
-            <!-- Вместо решётки ссылка на страницу с заказами-->
-            <li><a href="{% url 'workzone:profile' %}">Мои заказы</a></li> <!--Список выполняемых работником заказов-->
-            <li><a href="{% url 'users:logout' %}">Выйти</a></li> <!-- Выйти из учётки-->
-        </ul>
+        <div class="text-center col-6 d-flex flex-row">
+                <div class="col-3">
+                    <a class="btn btn-success" href="{% url 'workzone:index' %}">Доступные заказы</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-success" href="{% url 'workzone:profile' %}">Мои заказы</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-success" href="{% url 'shop:index' %}">Страница магазина</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-success" href="{% url 'workzone:storage' %}">Склад</a>
+                </div>
+        </div>
     </div>
 </nav>

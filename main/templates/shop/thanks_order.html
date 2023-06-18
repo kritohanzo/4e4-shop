@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% load template_filters %}
+{% block title %} Покупка {% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="col-md-4 col-xl-4 text-center">
+                    <p><strong>Спасибо, что выбрали именно нас!!!</strong></p>
+                    <p><strong>Наш курьер с вами свяжется, чтобы вручить ваш заказ.</strong></p>
+                </div>
+                <div>
+                        <img src="{% static 'img/thanks.png' %}">
+                </div>
+                <div class="pt-5">
+                    <a class="btn btn-success" href="{% url 'shop:index' %}">На главную</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

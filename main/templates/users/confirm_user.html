@@ -1,18 +1,27 @@
 {% extends 'users/base.html' %}
 {% load static %}
-{% block title %} Подтверждение {% endblock %}
+{% block title %} Подтверждение аккаунта{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+{% endblock %}
 {% block content %}
-<body class="login_page">
-	<div class="main">  	
-		
-			<div class="confirm">
+<div class="main d-flex	flex-column text-center justify-content-center align-items-center">
+	<input type="checkbox" id="chk" aria-hidden="true">
+	
+	<label>Подтверждение аккаунта {{ username }}</label>
+	<p class="text-white">Код отправлен на вашу почту {{ user.email }}</p>
+	<body class="login_page">
+		<div class="login d-flex flex-column justify-content-center align-items-center">
+
+			<div class="confirm text-center">
 				<form method="post" action="{% url 'users:confirm' username=username %}">
 					{% csrf_token %}
-					<label>Подтверждение аккаунта {{ username }}</label>
-					<input type="confirm_code" name="confirm_code", placeholder="confirm code">
-					<button type="submit">Войти	</button>
+					<input type="confirm_code" name="confirm_code" , placeholder="confirm code">
+					<button type="submit">Войти </button>
 				</form>
 			</div>
-	</div>
+		</div>
+</div>
 </body>
 {% endblock %}
